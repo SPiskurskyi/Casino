@@ -1,35 +1,7 @@
-#ifndef FUNCS
-#define FUNCS
-
-#include <iostream>
-#include <windows.h>
-#include <string>
-#include <limits>
-#include <ctime>
-#include <iomanip>
-#include <fstream>
-#include "Guest.h"
-#include "Casino.h"
-#include "Bar.h"
-
-using std::cout;
-using std::cin;
-using std::endl;
-using std::setw;
-using std::string;
-using std::fstream;
+#include "../headers/funcs.h"
 
 string tempstring;
 
-int get_choice(int a1, int a2);
-void print_mainmenu();
-void print_guestmenu(string tempname);
-void create_guest(Guest& other);
-void print_casinomenu();
-void check_drunkenness();
-int get_age();
-int get_cash();
-void create_phrase();
 
 void print_mainmenu()
 {
@@ -119,31 +91,7 @@ void create_guest(Guest& other)
         break;
     }
 }
-void check_drunkenness()
-{
-    int choice;
-    system("cls");
-    if (Bar::drunkenness == 4)
-    {
-        cout << "Are you okay, maybe you better go home?\n";
-        cout << "1->Sure\n2->Nope\n>";
-        choice = get_choice(1, 2);
-        if (choice == 1)
-        {
-            cout << "Ending..." << endl;
-            exit(EXIT_SUCCESS);
-        }
-        else if (choice == 2)
-        {
-            cout << "\nOkay....\n";
-        }
-    }
-    if (Bar::drunkenness == 8)
-    {
-        cout << "AGHHHHHHH\n";
-        exit(EXIT_SUCCESS);
-    }
-}
+
 void create_phrase()
 {
     srand(time(NULL));
@@ -168,4 +116,4 @@ void create_phrase()
     }
 }
 
-#endif
+

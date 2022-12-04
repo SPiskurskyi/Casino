@@ -1,4 +1,6 @@
-#include "../src/funcs.h"
+#include "../headers/Casino.h"
+#include "../headers/Funcs.h"
+
 
 int main()
 {

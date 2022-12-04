@@ -120,6 +120,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -139,13 +140,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="include\Bar.h" />
-    <ClInclude Include="include\Casino.h" />
-    <ClInclude Include="include\funcs.h" />
-    <ClInclude Include="include\Guest.h" />
+    <ClCompile Include="src\Bar.cpp" />
+    <ClCompile Include="src\Funcs.cpp" />
+    <ClCompile Include="src\Guest.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
+    <ClInclude Include="headers\Bar.h" />
+    <ClInclude Include="headers\Casino.h" />
+    <ClInclude Include="headers\Funcs.h" />
+    <ClInclude Include="headers\Guest.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,44 +1,6 @@
-#ifndef GUEST
-#define GUEST
+#include "../headers/Guest.h"
 
 
-using std::cout;
-using std::cin;
-using std::endl;
-using std::setw;
-using std::string;
-using std::fstream;
-
-int get_choice(int a1, int a2);
-
-
-class Guest
-{
-	friend class Bar;
-public:
-	Guest();
-	void SetGuestName(string name);
-	void SetGuestAge(int age);
-	void SetGuestCash(int cash);
-	string GetGuestName();
-	int GetGuestAge();
-	int GetGuestCash();
-	int GetGuestTokens();
-	void CheckStatus();
-	friend void create_guest(Guest& other);
-	void Exchanger();
-	Guest& Placebet();
-private:
-	string name;
-	int age = 0;
-	int cash = 0;
-	int tokens = 0;
-};
-/////////////////////////////////////////////////////////////////////////
-
-inline Guest::Guest()
-{
-}
 
 void Guest::SetGuestName(string name)
 {
@@ -75,7 +37,7 @@ void Guest::CheckStatus()
 	cout << "Guest cash - " << this->cash << "$" << endl;
 	cout << "Guest tokens - " << this->tokens << endl;
 }
-void Guest::Exchanger()  
+void Guest::Exchanger()
 {
 	int choice;
 	system("cls");
@@ -91,14 +53,14 @@ void Guest::Exchanger()
 		{
 			cout << "\tAvailable cash - " << this->cash << "$" << endl;
 			cout << "How many tokens do you want to buy?" << "\n>";
-			cin >> choice; 
+			cin >> choice;
 			while (choice <= 0 || choice > this->cash)
 			{
 				cout << "Ooops, something is wrong, try again!\n>";
 				cin >> choice;
 			}
 			this->tokens += choice;
-			this->cash -=choice;
+			this->cash -= choice;
 			cout << "Success\n";
 			Sleep(1000);
 			break;
@@ -115,14 +77,14 @@ void Guest::Exchanger()
 		{
 			cout << "\tAvailable tokens - " << this->tokens << endl;
 			cout << "How many cash do you want to buy?" << "\n>";
-			cin >> choice; 
+			cin >> choice;
 			while (choice <= 0 || choice > this->tokens)
 			{
 				cout << "Ooops, something is wrong, try again!\n>";
 				cin >> choice;
 			}
 			this->cash += choice;
-			this->tokens -=  choice;
+			this->tokens -= choice;
 			cout << "Success\n";
 			Sleep(1000);
 			break;
@@ -135,7 +97,7 @@ void Guest::Exchanger()
 		}
 	}
 }
-Guest & Guest::Placebet()
+Guest& Guest::Placebet()
 {
 	system("cls");
 	if (!(this->tokens == 0))
@@ -233,7 +195,7 @@ Guest & Guest::Placebet()
 			else cout << "You lost " << bet << " tokens :(\n\n";
 			break;
 		}
-		
+
 		system("pause");
 		return *this;
 	}
@@ -243,5 +205,3 @@ Guest & Guest::Placebet()
 		Sleep(1500);
 	}
 }
-
-#endif

@@ -1,24 +1,6 @@
-#ifndef BAR
-#define BAR
+#include "../headers/Bar.h"
 
-void create_phrase();
-
-class Bar
-{
-private:
-	fstream BarFile;
-	string Name;
-	int Price;
-	int id;
-	char Quantity;
-	string path = "assortment";
-public:
-	bool MakeOrder(int id,Guest& obj);
-	void ShowAsortement();
-	static int drunkenness;
-};
- int Bar::drunkenness = 0;
- /////////////////////////////////////////////////////////////////////////
+int Bar::drunkenness = 0;
 
 void Bar::ShowAsortement()
 {
@@ -28,23 +10,23 @@ void Bar::ShowAsortement()
 		cout << "File don't find";
 	}
 	else {
-		cout << setw(8) <<"Name\t";
-		cout << setw(8) <<"\t     Price\t";
-		cout << setw(8) <<"   Avalible";
-		cout << setw(8) <<"           Id\t" << endl;
+		cout << setw(8) << "Name\t";
+		cout << setw(8) << "\t     Price\t";
+		cout << setw(8) << "   Avalible";
+		cout << setw(8) << "           Id\t" << endl;
 		while (!BarFile.eof())
 		{
 			BarFile >> Name >> Price >> Quantity >> id;
 			cout << setw(8) << Name << '\t';
-			cout  << setw(8) << Price << "$\t";
-			cout  << setw(8) << Quantity << '\t';
-			cout  << setw(8) << id << '\t';
+			cout << setw(8) << Price << "$\t";
+			cout << setw(8) << Quantity << '\t';
+			cout << setw(8) << id << '\t';
 			cout << endl;
 		}
 		BarFile.close();
 	}
 }
-bool Bar::MakeOrder(int id, Guest & obj)
+bool Bar::MakeOrder(int id, Guest& obj)
 {
 	BarFile.open(path + ".txt", fstream::out | fstream::in | fstream::app);
 	if (!BarFile.is_open()) {
@@ -63,7 +45,7 @@ bool Bar::MakeOrder(int id, Guest & obj)
 					Sleep(2000);
 					return false;
 				}
-				else 
+				else
 				{
 					obj.cash -= Price;
 					cout << "\"You drank a " << Name << '\"' << endl;
@@ -81,4 +63,29 @@ bool Bar::MakeOrder(int id, Guest & obj)
 		return false;
 	}
 }
-#endif
+
+void check_drunkenness()
+{
+	int choice;
+	system("cls");
+	if (Bar::drunkenness == 4)
+	{
+		cout << "Are you okay, maybe you better go home?\n";
+		cout << "1->Sure\n2->Nope\n>";
+		choice = get_choice(1, 2);
+		if (choice == 1)
+		{
+			cout << "Ending..." << endl;
+			exit(EXIT_SUCCESS);
+		}
+		else if (choice == 2)
+		{
+			cout << "\nOkay....\n";
+		}
+	}
+	if (Bar::drunkenness == 8)
+	{
+		cout << "AGHHHHHHH\n";
+		exit(EXIT_SUCCESS);
+	}
+}
