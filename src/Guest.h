@@ -1,8 +1,16 @@
-int get_choice(int a1, int a2);
-using namespace std;
-
 #ifndef GUEST
 #define GUEST
+
+
+using std::cout;
+using std::cin;
+using std::endl;
+using std::setw;
+using std::string;
+using std::fstream;
+
+int get_choice(int a1, int a2);
+
 
 class Guest
 {

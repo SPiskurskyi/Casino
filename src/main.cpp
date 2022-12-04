@@ -1,4 +1,4 @@
-#include "funcs.h"
+#include "../src/funcs.h"
 
 int main()
 {

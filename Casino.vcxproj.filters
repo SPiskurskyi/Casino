@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Guest.h">
+    <ClInclude Include="include\Bar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="funcs.h">
+    <ClInclude Include="include\Casino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Casino.h">
+    <ClInclude Include="include\funcs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Bar.h">
+    <ClInclude Include="include\Guest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Casino.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

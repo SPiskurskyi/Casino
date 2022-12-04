@@ -1,3 +1,6 @@
+#ifndef FUNCS
+#define FUNCS
+
 #include <iostream>
 #include <windows.h>
 #include <string>
@@ -9,12 +12,14 @@
 #include "Casino.h"
 #include "Bar.h"
 
-using namespace std;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::setw;
+using std::string;
+using std::fstream;
+
 string tempstring;
-
-#ifndef FUNCS
-#define FUNCS
-
 
 int get_choice(int a1, int a2);
 void print_mainmenu();
@@ -53,7 +58,7 @@ void print_casinomenu()
     cout << "4-> Leave the casino" << endl;
     cout << '>';
 }
-int get_choice(int a1, int a2) 
+int get_choice(int a1, int a2)
 {
     int choice;
     string s;
@@ -114,12 +119,12 @@ void create_guest(Guest& other)
         break;
     }
 }
-void check_drunkenness() 
+void check_drunkenness()
 {
     int choice;
     system("cls");
     if (Bar::drunkenness == 4)
-    { 
+    {
         cout << "Are you okay, maybe you better go home?\n";
         cout << "1->Sure\n2->Nope\n>";
         choice = get_choice(1, 2);
@@ -162,4 +167,5 @@ void create_phrase()
         break;
     }
 }
+
 #endif

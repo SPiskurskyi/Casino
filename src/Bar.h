@@ -1,6 +1,8 @@
-void create_phrase();
 #ifndef BAR
 #define BAR
+
+void create_phrase();
+
 class Bar
 {
 private:

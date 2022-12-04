@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Bar.h" />
-    <ClInclude Include="Casino.h" />
-    <ClInclude Include="funcs.h" />
-    <ClInclude Include="Guest.h" />
+    <ClInclude Include="include\Bar.h" />
+    <ClInclude Include="include\Casino.h" />
+    <ClInclude Include="include\funcs.h" />
+    <ClInclude Include="include\Guest.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Casino.cpp" />
+    <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

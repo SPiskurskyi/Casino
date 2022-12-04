@@ -1,6 +1,6 @@
-using namespace std;
 #ifndef CASINO
 #define CASINO
+
 class Casino 
 {
 private:
