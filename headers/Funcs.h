@@ -4,7 +4,7 @@
 
 #include "Bar.h"
 
-int get_choice( const int a1,const int a2);
+int get_choice(const int a1, const int a2);
 void print_mainmenu();
 void print_guestmenu(const string& GuestName);
 void create_guest(Guest& other);

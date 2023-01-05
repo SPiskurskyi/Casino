@@ -15,7 +15,6 @@ int main()
     int tempcash;
     char tempchar;
     int tempid;
-
     srand(time(NULL));
     do
 
