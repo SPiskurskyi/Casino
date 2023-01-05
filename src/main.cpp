@@ -4,6 +4,7 @@
 
 int main()
 {
+    // variables
     Guest g;
     Casino c;
     Bar b;
@@ -14,7 +15,10 @@ int main()
     int tempcash;
     char tempchar;
     int tempid;
+
+    srand(time(NULL));
     do
+
     {
     MainMenu:
         print_mainmenu();
@@ -32,7 +36,7 @@ int main()
                 cout << "Enter Guest`s name -> ";
                 getline(cin, tempname);
                 cout << "\nEnter Guest`s age -> ";
-                tempage = get_age();
+                tempage = get_choice();
                 cout << "\nEnter Guest`s cash -> ";
                 tempcash = get_cash();
                 g.SetGuestName(tempname);

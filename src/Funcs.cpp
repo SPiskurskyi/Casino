@@ -11,11 +11,11 @@ void print_mainmenu()
     cout << "2-> Exit program" << endl;
     cout << '>';
 }
-void print_guestmenu(string name)
+void print_guestmenu(const string& GuestName) 
 {
     system("cls");
     cout << "--GUEST MENU--" << endl;
-    cout << "1-> Check \"" << name << "\" status" << endl;
+    cout << "1-> Check \"" << GuestName << "\" status" << endl;
     cout << "2-> Go to the casino" << endl;
     cout << "3-> Go back to main menu" << endl;
     cout << '>';
@@ -30,7 +30,7 @@ void print_casinomenu()
     cout << "4-> Leave the casino" << endl;
     cout << '>';
 }
-int get_choice(int a1, int a2)
+int get_choice(const int a1,const int a2)
 {
     int choice;
     string s;
@@ -42,7 +42,7 @@ int get_choice(int a1, int a2)
     }
     return choice;
 }
-int get_age()
+int get_choice()
 {
     int choice;
     string s;
@@ -68,7 +68,6 @@ int get_cash()
 }
 void create_guest(Guest& other)
 {
-    srand(time(NULL));
     other.age = (rand() % 72) + 8;
     other.cash = rand() % 1000;
     int a = rand() % 5;
@@ -91,10 +90,8 @@ void create_guest(Guest& other)
         break;
     }
 }
-
 void create_phrase()
 {
-    srand(time(NULL));
     int a = rand() % 5;
     switch (a)
     {

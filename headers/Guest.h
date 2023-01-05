@@ -16,7 +16,7 @@ using std::setw;
 using std::string;
 using std::fstream;
 
-int get_choice(int a1, int a2);
+int get_choice(const int a1, const int a2);
 
 
 class Guest
