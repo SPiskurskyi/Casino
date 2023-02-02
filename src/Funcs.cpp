@@ -112,5 +112,12 @@ void create_phrase()
 		break;
 	}
 }
+void welcome()
+{
+	system("cls");
+	std::cout << "\n\t\t\t\t+----------------------------+";
+	std::cout << "\n\t\t\t\t|\tWelcome in Casino!   |";
+	std::cout << "\n\t\t\t\t+----------------------------+\n";
+}
 
 
