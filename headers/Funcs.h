@@ -13,6 +13,6 @@ void check_drunkenness();
 int get_choice();
 int get_cash();
 void create_phrase();
-void welcome();
+void print_welcome();
 
 #endif

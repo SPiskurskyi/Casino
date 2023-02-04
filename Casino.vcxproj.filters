@@ -32,7 +32,7 @@
     <ClInclude Include="headers\Bar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="headers\Casino.h">
+    <ClInclude Include="headers\Casino.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Funcs.h">

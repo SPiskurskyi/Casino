@@ -1,7 +1,5 @@
 #include "../headers/funcs.h"
 
-string tempstring;
-
 
 void print_mainmenu()
 {
@@ -112,7 +110,7 @@ void create_phrase()
 		break;
 	}
 }
-void welcome()
+void print_welcome()
 {
 	system("cls");
 	std::cout << "\n\t\t\t\t+----------------------------+";

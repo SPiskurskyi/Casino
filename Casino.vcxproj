@@ -148,7 +148,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Bar.h" />
-    <ClInclude Include="headers\Casino.h" />
+    <ClInclude Include="headers\Casino.hpp" />
     <ClInclude Include="headers\Funcs.h" />
     <ClInclude Include="headers\Guest.h" />
   </ItemGroup>

@@ -2,8 +2,12 @@
 #define CASINO
 
 #include "../headers/Funcs.h"
+
 class Casino {
+private:
+    string Name;
 public:
+    Casino(string name) : Name(name) {};
     void setup();
 };
 
@@ -77,7 +81,7 @@ void Casino::setup()
                     }
                     else Sleep(500);
                 }
-                welcome();
+                print_welcome();
                 Sleep(1500);
             CasinoMenu:
                 check_drunkenness();
