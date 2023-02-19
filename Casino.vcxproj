@@ -151,6 +151,13 @@
     <ClInclude Include="headers\Casino.hpp" />
     <ClInclude Include="headers\Funcs.h" />
     <ClInclude Include="headers\Guest.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Casino.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="src\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
