@@ -4,6 +4,7 @@ int Bar::drunkenness = 0;
 
 void Bar::ShowAsortement()
 {
+
 	system("cls");
 	BarFile.open(path + ".txt", fstream::out | fstream::in | fstream::app);
 	if (!BarFile.is_open()) {
