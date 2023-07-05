@@ -1,8 +1,9 @@
 #ifndef GUEST
 #define GUEST
 
+
 #include <iostream>
-#include <windows.h>
+#include <thread>
 #include <string>
 #include <limits>
 #include <ctime>
@@ -15,9 +16,11 @@ using std::endl;
 using std::setw;
 using std::string;
 using std::fstream;
+using namespace std::chrono_literals;
 
 int get_choice(const int a1,const int a2);
 
+		
 
 class Guest
 {

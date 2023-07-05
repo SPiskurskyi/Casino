@@ -40,7 +40,8 @@ void Guest::CheckStatus()
 void Guest::Exchanger()
 {
 	int choice;
-	system("cls");
+	system("clear");
+	/* system("cls"); */
 	cout << "What kind of exchange are you interested in?\n";
 	cout << "1->Cash->tokens\n";
 	cout << "2->Tokens->cash\n";
@@ -48,7 +49,8 @@ void Guest::Exchanger()
 	switch (choice)
 	{
 	case 1:
-		system("cls");
+		system("clear");
+		/* system("cls"); */
 		if (!(this->cash == 0))
 		{
 			cout << "\tAvailable cash - " << this->cash << "$" << endl;
@@ -62,17 +64,20 @@ void Guest::Exchanger()
 			this->tokens += choice;
 			this->cash -= choice;
 			cout << "Success\n";
-			Sleep(1000);
+			std::this_thread::sleep_for(1000ms);
+			/* Sleep(1000); */
 			break;
 		}
 		else
 		{
 			cout << "You have no cash!" << endl;
-			Sleep(1000);
+			std::this_thread::sleep_for(1000ms);
+			/* Sleep(1000); */
 			break;
 		}
 	case 2:
-		system("cls");
+		system("clear");
+		/* system("cls"); */
 		if (!(this->tokens == 0))
 		{
 			cout << "\tAvailable tokens - " << this->tokens << endl;
@@ -86,54 +91,57 @@ void Guest::Exchanger()
 			this->cash += choice;
 			this->tokens -= choice;
 			cout << "Success\n";
-			Sleep(1000);
+			std::this_thread::sleep_for(1000ms);
+			/* Sleep(1000); */
 			break;
 		}
 		else
 		{
 			cout << "You have no tokens!" << endl;
-			Sleep(1000);
+			std::this_thread::sleep_for(1000ms);
+			/* Sleep(1000); */
 			break;
 		}
 	}
 }
 Guest& Guest::Placebet()
 {
-	system("cls");
+	system("clear");
+	/* system("cls"); */
 	if (!(this->tokens == 0))
 	{
 		cout << "-----------------------------------------------------------------------------------------------------" << endl;
-		HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
-		SetConsoleTextAttribute(console, 7);
+		/* HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE); */
+		/* SetConsoleTextAttribute(console, 7); */
 		for (int i = 0; i < 37; i++)
 		{
 			if (i == 0)
 			{
 				cout << '-';
-				SetConsoleTextAttribute(console, 10); //green
+				/* SetConsoleTextAttribute(console, 10); //green */
 				cout << i;
-				SetConsoleTextAttribute(console, 7);
+				/* SetConsoleTextAttribute(console, 7); */
 			}
 			else if (i == 1)
 			{
 				cout << '-';
-				SetConsoleTextAttribute(console, 12); //red
+				/* SetConsoleTextAttribute(console, 12); //red */
 				cout << i;
-				SetConsoleTextAttribute(console, 7);
+				/* SetConsoleTextAttribute(console, 7); */
 			}
 			else if (i % 2 == 0)
 			{
 				cout << '-';
-				SetConsoleTextAttribute(console, 8); //black
+				/* SetConsoleTextAttribute(console, 8); //black */
 				cout << i;
-				SetConsoleTextAttribute(console, 7);
+				/* SetConsoleTextAttribute(console, 7); */
 			}
 			else if (i % 2 == 1)
 			{
 				cout << '-';
-				SetConsoleTextAttribute(console, 12); //red
+				/* SetConsoleTextAttribute(console, 12); //red */
 				cout << i;
-				SetConsoleTextAttribute(console, 7);
+				/* SetConsoleTextAttribute(console, 7); */
 			}
 		}
 		cout << "\n-----------------------------------------------------------------------------------------------------" << endl;
@@ -150,23 +158,23 @@ Guest& Guest::Placebet()
 		if (winlot == 0)
 		{
 			cout << "\n\t\t\t\tWinning lot - ";
-			SetConsoleTextAttribute(console, 10);
+			/* SetConsoleTextAttribute(console, 10); */
 			cout << winlot << " GREEN " << endl;
-			SetConsoleTextAttribute(console, 7);
+			/* SetConsoleTextAttribute(console, 7); */
 		}
 		else if (winlot % 2 == 1)
 		{
 			cout << "\n\t\t\t\tWinning lot - ";
-			SetConsoleTextAttribute(console, 12);
+			/* SetConsoleTextAttribute(console, 12); */
 			cout << winlot << " RED " << endl;
-			SetConsoleTextAttribute(console, 7);
+			/* SetConsoleTextAttribute(console, 7); */
 		}
 		else if (winlot % 2 == 0)
 		{
 			cout << "\n\t\t\t\tWinning lot - ";
-			SetConsoleTextAttribute(console, 8);
+			/* SetConsoleTextAttribute(console, 8); */
 			cout << winlot << " BLACK " << endl;
-			SetConsoleTextAttribute(console, 7);
+			/* SetConsoleTextAttribute(console, 7); */
 		}
 		switch (choice)
 		{
@@ -202,6 +210,7 @@ Guest& Guest::Placebet()
 	else
 	{
 		cout << "Please exchange your cash for tokens to start playing!\n" << endl;
-		Sleep(1500);
+		std::this_thread::sleep_for(1500ms);
+		/* Sleep(1500); */
 	}
 }

@@ -15,6 +15,7 @@ public:
 void Casino::setup()
 {
 
+	using namespace std::chrono_literals;
     // variables
     Guest g;
     Bar b;
@@ -28,20 +29,21 @@ void Casino::setup()
     srand(time(NULL));
     do
 
-    {
-    MainMenu:
+    { MainMenu:
         print_mainmenu();
         choice = get_choice(1, 2);
         switch (choice)
         {
         case 1: //Creating guest menu
-            system("cls");
+            system("clear");
+            /* system("cls"); */
             cout << "Create guest:\n" << "1->Manually " << endl << "2->Randomize \n>";
             choice = get_choice(1, 2);
             switch (choice)
             {
             case 1: //Manual create
-                system("cls");
+				system("clear");
+                /* system("cls"); */
                 cout << "Enter Guest`s name -> ";
                 getline(cin, tempname);
                 cout << "\nEnter Guest`s age -> ";
@@ -62,13 +64,15 @@ void Casino::setup()
             switch (choice)
             {
             case 1: //Status check case
-                system("cls");
+				system("clear");
+                /* system("cls"); */
                 g.CheckStatus();
                 cout << "Press \"Enter\" to continue\n>";
                 tempchar = getchar();
                 goto GuestMenu;
             case 2:  //Casino entering case
-                system("cls");
+				system("clear");
+                /* system("cls"); */
                 if (g.GetGuestAge() < 18)
                 {
                     cout << "You are still too young to gamble. Are you sure you want to continue?\n1-> Yes\n2-> No\n>";
@@ -76,13 +80,17 @@ void Casino::setup()
                     if (choice == 2)
                     {
                         cout << "Bye, Bye\n";
-                        Sleep(1500);
+						std::this_thread::sleep_for(1500ms);
+                        //Sleep(1500);
                         goto MainMenu;
                     }
-                    else Sleep(500);
+                    
+					std::this_thread::sleep_for(500ms);
+					//else Sleep(500);
                 }
-                print_welcome();
-                Sleep(1500);
+               	print_welcome();
+				std::this_thread::sleep_for(1500ms);
+                //Sleep(1500);
             CasinoMenu:
                 check_drunkenness();
                 print_casinomenu();
@@ -99,9 +107,11 @@ void Casino::setup()
                 case 3: //Bar case
                     if (g.GetGuestAge() < 18)
                     {
-                        system("cls");
+						system("clear");
+                        /* system("cls"); */
                         cout << "Unfortunately, the bar is only available for adults\n";
-                        Sleep(2000);
+						std::this_thread::sleep_for(1500ms);
+                        //Sleep(2000);
                         goto CasinoMenu;
                     }
                     else
@@ -114,9 +124,11 @@ void Casino::setup()
                         goto CasinoMenu;
                     }
                 case 4: //Leave casino case
-                    system("cls");
+					system("clear");
+                    /* system("cls"); */
                     cout << "Leaving..." << endl;
-                    Sleep(1000);
+					std::this_thread::sleep_for(1000ms);
+					//Sleep(1000);
                     goto GuestMenu;
                 }
             case 3:
@@ -130,3 +142,4 @@ void Casino::setup()
 }
 
 #endif
+

@@ -5,7 +5,8 @@ int Bar::drunkenness = 0;
 void Bar::ShowAsortement()
 {
 
-	system("cls");
+	system("clear");
+	/* system("cls"); */
 	BarFile.open(path + ".txt", fstream::out | fstream::in | fstream::app);
 	if (!BarFile.is_open()) {
 		cout << "File don't find";
@@ -43,7 +44,8 @@ bool Bar::MakeOrder(int id, Guest& obj)
 				{
 					BarFile.close();
 					cout << "Not enough money on the balance\n";
-					Sleep(2000);
+					std::this_thread::sleep_for(2000ms);
+					/* Sleep(2000); */
 					return false;
 				}
 				else
@@ -51,7 +53,8 @@ bool Bar::MakeOrder(int id, Guest& obj)
 					obj.cash -= Price;
 					cout << "\"You drank a " << Name << '\"' << endl;
 					create_phrase();
-					Sleep(2500);
+					std::this_thread::sleep_for(2500ms);
+					/* Sleep(2500); */
 					BarFile.close();
 					drunkenness++;
 					return true;
@@ -60,7 +63,8 @@ bool Bar::MakeOrder(int id, Guest& obj)
 		}
 		BarFile.close();
 		cout << "Item is not available\n";
-		Sleep(2000);
+		std::this_thread::sleep_for(2000ms);
+		/* Sleep(2000); */
 		return false;
 	}
 }
@@ -68,7 +72,8 @@ bool Bar::MakeOrder(int id, Guest& obj)
 void check_drunkenness()
 {
 	int choice;
-	system("cls");
+	system("clear");
+	/* system("cls"); */
 	if (Bar::drunkenness == 4)
 	{
 		cout << "Are you okay, maybe you better go home?\n";

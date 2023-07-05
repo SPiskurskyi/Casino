@@ -3,5 +3,5 @@
 int main()
 {
 	Casino Emerald("Emerald");
-	Emerald.setup();
+	Emerald.setup();	
 }
