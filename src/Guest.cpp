@@ -63,14 +63,13 @@ void Guest::Exchanger()
 			this->cash -= choice;
 			cout << "Success\n";
 			std::this_thread::sleep_for(1000ms);
-			/* Sleep(1000); */
+
 			break;
 		}
 		else
 		{
 			cout << "You have no cash!" << endl;
 			std::this_thread::sleep_for(1000ms);
-			/* Sleep(1000); */
 			break;
 		}
 	case 2:
@@ -89,14 +88,12 @@ void Guest::Exchanger()
 			this->tokens -= choice;
 			cout << "Success\n";
 			std::this_thread::sleep_for(1000ms);
-			/* Sleep(1000); */
 			break;
 		}
 		else
 		{
 			cout << "You have no tokens!" << endl;
 			std::this_thread::sleep_for(1000ms);
-			/* Sleep(1000); */
 			break;
 		}
 	}
@@ -182,7 +179,6 @@ Guest& Guest::Placebet()
 			}
 			else cout << "You lost " << bet << " tokens :(\n\n";
 			std::this_thread::sleep_for(3500ms);
-			/* Sleep(3500); */
 			break;
 		case 2:
 			if (winlot % 2 == 1)
@@ -192,7 +188,6 @@ Guest& Guest::Placebet()
 			}
 			else cout << "You lost " << bet << " tokens :(\n\n";
 			std::this_thread::sleep_for(3500ms);
-			/* Sleep(3500); */
 			break;
 		case 3:
 			if (winlot == 0)
@@ -202,17 +197,13 @@ Guest& Guest::Placebet()
 			}
 			else cout << "You lost " << bet << " tokens :(\n\n";
 			std::this_thread::sleep_for(3500ms);
-			/* Sleep(3500); */
 			break;
 		}
-
-		system("pause");
 		return *this;
 	}
 	else
 	{
 		cout << "Please exchange your cash for tokens to start playing!\n" << endl;
 		std::this_thread::sleep_for(1500ms);
-		/* Sleep(1500); */
 	}
 }

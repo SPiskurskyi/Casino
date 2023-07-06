@@ -14,125 +14,105 @@ public:
 
 void Casino::setup()
 {
-
-	using namespace std::chrono_literals;
-    // variables
-    Guest g;
-    Bar b;
-    int choice;
-    string tempname;
-    string tempstring;
-    int tempage;
-    int tempcash;
-    char tempchar;
-    int tempid;
     srand(time(NULL));
-    do
 
-    { MainMenu:
+    while (true)
+    {
         print_mainmenu();
-        choice = get_choice(1, 2);
-        switch (choice)
+        int mainChoice = get_choice(1, 2);
+
+        if (mainChoice == 1)
         {
-        case 1: //Creating guest menu
-			CLEAR_SCREEN;
-            cout << "Create guest:\n" << "1->Manually " << endl << "2->Randomize \n>";
-            choice = get_choice(1, 2);
-            switch (choice)
+            Guest guest;
+            create_guest_menu(guest);
+
+            while (true)
             {
-            case 1: //Manual create
-				CLEAR_SCREEN;
-                cout << "Enter Guest`s name -> ";
-                getline(cin, tempname);
-                cout << "\nEnter Guest`s age -> ";
-                tempage = get_choice();
-                cout << "\nEnter Guest`s cash -> ";
-                tempcash = get_cash();
-                g.SetGuestName(tempname);
-                g.SetGuestAge(tempage);
-                g.SetGuestCash(tempcash);
-                break;
-            case 2: //random create
-                create_guest(g);
-                break;
-            }
-        GuestMenu:
-            print_guestmenu(g.GetGuestName());
-            choice = get_choice(1, 3);
-            switch (choice)
-            {
-            case 1: //Status check case
-				CLEAR_SCREEN;
-                g.CheckStatus();
-                cout << "Press \"Enter\" to continue\n>";
-                tempchar = getchar();
-                goto GuestMenu;
-            case 2:  //Casino entering case
-				CLEAR_SCREEN;
-                if (g.GetGuestAge() < 18)
+                print_guestmenu(guest.GetGuestName());
+                int guestChoice = get_choice(1, 3);
+
+                if (guestChoice == 1)
                 {
-                    cout << "You are still too young to gamble. Are you sure you want to continue?\n1-> Yes\n2-> No\n>";
-                    choice = get_choice(1, 2);
-                    if (choice == 2)
-                    {
-                        cout << "Bye, Bye\n";
-						std::this_thread::sleep_for(1500ms);
-                        //Sleep(1500);
-                        goto MainMenu;
-                    }
-                    
-					std::this_thread::sleep_for(500ms);
-					//else Sleep(500);
+                    CLEAR_SCREEN;
+                    guest.CheckStatus();
+                    cout << "Press \"Enter\" to continue\n>";
+                    getchar();
                 }
-               	print_welcome();
-				std::this_thread::sleep_for(1500ms);
-                //Sleep(1500);
-            CasinoMenu:
-                check_drunkenness();
-                print_casinomenu();
-                choice = get_choice(1, 4);
-                switch (choice)
+                else if (guestChoice == 2)
                 {
-                case 1: // Exchanger case
-                    g.Exchanger();
-                    tempchar = getchar();
-                    goto CasinoMenu;
-                case 2: //Betting case
-                    g.Placebet();
-                    goto CasinoMenu;
-                case 3: //Bar case
-                    if (g.GetGuestAge() < 18)
+                    if (guest.GetGuestAge() < 18)
                     {
-						CLEAR_SCREEN;
-                        cout << "Unfortunately, the bar is only available for adults\n";
-						std::this_thread::sleep_for(2000ms);
-                        //Sleep(2000);
-                        goto CasinoMenu;
+                        CLEAR_SCREEN;
+                        cout << "You are still too young to gamble. Are you sure you want to continue?\n1-> Yes\n2-> No\n>";
+                        int ageChoice = get_choice(1, 2);
+
+                        if (ageChoice == 2)
+                        {
+                            cout << "Bye, Bye\n";
+                            std::this_thread::sleep_for(500ms);
+                            break;
+                        }
+
+                        std::this_thread::sleep_for(500ms);
                     }
-                    else
+
+                    print_welcome();
+                    std::this_thread::sleep_for(1500ms);
+
+                    Bar bar;
+                    while (true)
                     {
-                        b.ShowAsortement();
-                        cout << "\t\t\tBalance - " << g.GetGuestCash() << endl;
-                        cout << "Choose any id of the drink that interests you\n>";
-                        tempid = get_choice(1, 8);
-                        b.MakeOrder(tempid, g);
-                        goto CasinoMenu;
+                        check_drunkenness();
+                        print_casinomenu();
+                        int casinoChoice = get_choice(1, 4);
+
+                        if (casinoChoice == 1)
+                        {
+                            guest.Exchanger();
+                            getchar();
+                        }
+                        else if (casinoChoice == 2)
+                        {
+                            guest.Placebet();
+                        }
+                        else if (casinoChoice == 3)
+                        {
+                            if (guest.GetGuestAge() < 18)
+                            {
+                                CLEAR_SCREEN;
+                                cout << "Unfortunately, the bar is only available for adults\n";
+                                std::this_thread::sleep_for(2000ms);
+                            }
+                            else
+                            {
+                                bar.ShowAsortement();
+                                cout << "\t\t\tBalance - " << guest.GetGuestCash() << endl;
+                                cout << "Choose any id of the drink that interests you\n>";
+                                int drinkId = get_choice(1, 8);
+                                bar.MakeOrder(drinkId, guest);
+                            }
+                        }
+                        else if (casinoChoice == 4)
+                        {
+                            CLEAR_SCREEN;
+                            cout << "Leaving..." << endl;
+                            std::this_thread::sleep_for(300ms);
+                            break;
+                        }
                     }
-				case 4: //leave casino case
-					CLEAR_SCREEN;
-                    cout << "Leaving..." << endl;
-					std::this_thread::sleep_for(1000ms);
-					//Sleep(1000);
-                    goto GuestMenu;
                 }
-            case 3:
-                goto MainMenu;
+                else if (guestChoice == 3)
+                {
+                    break;
+                }
             }
-        case 2:
+        }
+        else if (mainChoice == 2)
+        {
             cout << "Ending..." << endl;
             exit(EXIT_SUCCESS);
         }
-    } while (true);
+    }
 }
 
 #endif

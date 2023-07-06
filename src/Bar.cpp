@@ -43,7 +43,6 @@ bool Bar::MakeOrder(int id, Guest& obj)
 					BarFile.close();
 					cout << "Not enough money on the balance\n";
 					std::this_thread::sleep_for(2000ms);
-					/* Sleep(2000); */
 					return false;
 				}
 				else
@@ -52,7 +51,6 @@ bool Bar::MakeOrder(int id, Guest& obj)
 					cout << "\"You drank a " << Name << '\"' << endl;
 					create_phrase();
 					std::this_thread::sleep_for(2500ms);
-					/* Sleep(2500); */
 					BarFile.close();
 					drunkenness++;
 					return true;
@@ -62,7 +60,6 @@ bool Bar::MakeOrder(int id, Guest& obj)
 		BarFile.close();
 		cout << "Item is not available\n";
 		std::this_thread::sleep_for(2000ms);
-		/* Sleep(2000); */
 		return false;
 	}
 }

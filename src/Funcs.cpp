@@ -118,4 +118,35 @@ void print_welcome()
 	std::cout << "\n\t\t\t\t+----------------------------+\n";
 }
 
+void create_guest_menu(Guest& guest)
+{
+	CLEAR_SCREEN;
+	cout << "Create guest:\n1->Manually\n2->Randomize\n>";
+	int choice = get_choice(1, 2);
+
+	switch (choice)
+	{
+	case 1: // Manual create
+	{
+		CLEAR_SCREEN;
+		cout << "Enter Guest's name -> ";
+		std::string tempname;
+		getline(cin, tempname);
+		cout << "\nEnter Guest's age -> ";
+		int tempage = get_choice();
+		cout << "\nEnter Guest's cash -> ";
+		int tempcash = get_cash();
+		guest.SetGuestName(tempname);
+		guest.SetGuestAge(tempage);
+		guest.SetGuestCash(tempcash);
+		break;
+	}
+	case 2: // Random create
+	{
+		create_guest(guest);
+		break;
+	}
+	}
+}
+
 

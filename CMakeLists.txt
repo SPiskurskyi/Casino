@@ -1,6 +1,8 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.12)
 
 project(casino)
+
+configure_file(${CMAKE_SOURCE_DIR}/assortment.txt ${CMAKE_BINARY_DIR}/assortment.txt COPYONLY)
 
 add_executable(${PROJECT_NAME}
 ${CMAKE_SOURCE_DIR}/src/main.cpp

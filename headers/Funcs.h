@@ -14,5 +14,6 @@ int get_choice();
 int get_cash();
 void create_phrase();
 void print_welcome();
+void create_guest_menu(Guest& guest);
 
 #endif

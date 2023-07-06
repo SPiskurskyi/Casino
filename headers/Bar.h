@@ -13,7 +13,7 @@ private:
 	int Price;
 	int id;
 	char Quantity;
-	string path = "../../assortment";
+	string path = "../assortment";
 public:
 	bool MakeOrder(int id,Guest& obj);
 	void ShowAsortement();
