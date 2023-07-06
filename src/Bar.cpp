@@ -4,9 +4,7 @@ int Bar::drunkenness = 0;
 
 void Bar::ShowAsortement()
 {
-
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	BarFile.open(path + ".txt", fstream::out | fstream::in | fstream::app);
 	if (!BarFile.is_open()) {
 		cout << "File don't find";
@@ -72,8 +70,7 @@ bool Bar::MakeOrder(int id, Guest& obj)
 void check_drunkenness()
 {
 	int choice;
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	if (Bar::drunkenness == 4)
 	{
 		cout << "Are you okay, maybe you better go home?\n";

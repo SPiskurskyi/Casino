@@ -3,8 +3,7 @@
 
 void print_mainmenu()
 {
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	cout << "--MAIN MENU--" << endl;
 	cout << "1-> Guest menu" << endl;
 	cout << "2-> Exit program" << endl;
@@ -12,8 +11,7 @@ void print_mainmenu()
 }
 void print_guestmenu(const string& GuestName)
 {
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	cout << "--GUEST MENU--" << endl;
 	cout << "1-> Check \"" << GuestName << "\" status" << endl;
 	cout << "2-> Go to the casino" << endl;
@@ -22,8 +20,7 @@ void print_guestmenu(const string& GuestName)
 }
 void print_casinomenu()
 {
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	cout << "--CASINO MENU--" << endl;
 	cout << "1-> Exchanger" << endl;
 	cout << "2-> Place a bet" << endl;
@@ -36,8 +33,7 @@ int get_choice(const int a1, const int a2)
 	int choice;
 	string s;
 	getline(cin, s);
-	/* while (sscanf_s(s.c_str(), "%d", &choice) != 1 || choice < a1 || choice > a2) */
-	while (sscanf(s.c_str(), "%d", &choice) != 1 || choice < a1 || choice > a2)
+	while (sscanf(s.c_str(),"%d", &choice) != 1 || choice < a1 || choice > a2)
 	{
 		cout << "Incorrect input. Try again\n>";
 		getline(cin, s);
@@ -49,7 +45,6 @@ int get_choice()
 	int choice;
 	string s;
 	getline(cin, s);
-	/* while (sscanf_s(s.c_str(), "%d", &choice) != 1 || choice < a1 || choice > a2) */
 	while (sscanf(s.c_str(), "%d", &choice) != 1 || choice < 8 || choice > 80)
 	{
 		cout << "Wrong Age, try again please (8-80)\n>";
@@ -62,7 +57,6 @@ int get_cash()
 	int choice;
 	string s;
 	getline(cin, s);
-	/* while (sscanf_s(s.c_str(), "%d", &choice) != 1 || choice < a1 || choice > a2) */
 	while (sscanf(s.c_str(), "%d", &choice) != 1 || choice < 1)
 	{
 		cout << "Wrong cash value, try again please (minimum 1$)\n>";
@@ -118,8 +112,7 @@ void create_phrase()
 }
 void print_welcome()
 {
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	std::cout << "\n\t\t\t\t+----------------------------+";
 	std::cout << "\n\t\t\t\t|\tWelcome in Casino!   |";
 	std::cout << "\n\t\t\t\t+----------------------------+\n";

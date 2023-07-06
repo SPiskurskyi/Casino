@@ -1,5 +1,16 @@
 #ifndef GUEST
 #define GUEST
+	
+#ifdef __linux__ 
+//linux code goes here
+#define CLEAR_SCREEN system("clear");
+
+#elif _WIN32
+// windows code goes here
+#define CLEAR_SCREEN system("cls");
+#define SSCANF sscanf_s 
+
+#endif
 
 
 #include <iostream>

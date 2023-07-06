@@ -40,8 +40,7 @@ void Guest::CheckStatus()
 void Guest::Exchanger()
 {
 	int choice;
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	cout << "What kind of exchange are you interested in?\n";
 	cout << "1->Cash->tokens\n";
 	cout << "2->Tokens->cash\n";
@@ -49,8 +48,7 @@ void Guest::Exchanger()
 	switch (choice)
 	{
 	case 1:
-		system("clear");
-		/* system("cls"); */
+		CLEAR_SCREEN;
 		if (!(this->cash == 0))
 		{
 			cout << "\tAvailable cash - " << this->cash << "$" << endl;
@@ -76,8 +74,7 @@ void Guest::Exchanger()
 			break;
 		}
 	case 2:
-		system("clear");
-		/* system("cls"); */
+		CLEAR_SCREEN;
 		if (!(this->tokens == 0))
 		{
 			cout << "\tAvailable tokens - " << this->tokens << endl;
@@ -106,8 +103,7 @@ void Guest::Exchanger()
 }
 Guest& Guest::Placebet()
 {
-	system("clear");
-	/* system("cls"); */
+	CLEAR_SCREEN;
 	if (!(this->tokens == 0))
 	{
 		cout << "-----------------------------------------------------------------------------------------------------" << endl;
@@ -185,6 +181,8 @@ Guest& Guest::Placebet()
 				this->tokens = this->tokens + bet * 2;
 			}
 			else cout << "You lost " << bet << " tokens :(\n\n";
+			std::this_thread::sleep_for(3500ms);
+			/* Sleep(3500); */
 			break;
 		case 2:
 			if (winlot % 2 == 1)
@@ -193,6 +191,8 @@ Guest& Guest::Placebet()
 				this->tokens = this->tokens + bet * 2;
 			}
 			else cout << "You lost " << bet << " tokens :(\n\n";
+			std::this_thread::sleep_for(3500ms);
+			/* Sleep(3500); */
 			break;
 		case 3:
 			if (winlot == 0)
@@ -201,6 +201,8 @@ Guest& Guest::Placebet()
 				this->tokens = this->tokens + bet * 16;
 			}
 			else cout << "You lost " << bet << " tokens :(\n\n";
+			std::this_thread::sleep_for(3500ms);
+			/* Sleep(3500); */
 			break;
 		}
 

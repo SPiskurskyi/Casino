@@ -35,15 +35,13 @@ void Casino::setup()
         switch (choice)
         {
         case 1: //Creating guest menu
-            system("clear");
-            /* system("cls"); */
+			CLEAR_SCREEN;
             cout << "Create guest:\n" << "1->Manually " << endl << "2->Randomize \n>";
             choice = get_choice(1, 2);
             switch (choice)
             {
             case 1: //Manual create
-				system("clear");
-                /* system("cls"); */
+				CLEAR_SCREEN;
                 cout << "Enter Guest`s name -> ";
                 getline(cin, tempname);
                 cout << "\nEnter Guest`s age -> ";
@@ -64,15 +62,13 @@ void Casino::setup()
             switch (choice)
             {
             case 1: //Status check case
-				system("clear");
-                /* system("cls"); */
+				CLEAR_SCREEN;
                 g.CheckStatus();
                 cout << "Press \"Enter\" to continue\n>";
                 tempchar = getchar();
                 goto GuestMenu;
             case 2:  //Casino entering case
-				system("clear");
-                /* system("cls"); */
+				CLEAR_SCREEN;
                 if (g.GetGuestAge() < 18)
                 {
                     cout << "You are still too young to gamble. Are you sure you want to continue?\n1-> Yes\n2-> No\n>";
@@ -107,10 +103,9 @@ void Casino::setup()
                 case 3: //Bar case
                     if (g.GetGuestAge() < 18)
                     {
-						system("clear");
-                        /* system("cls"); */
+						CLEAR_SCREEN;
                         cout << "Unfortunately, the bar is only available for adults\n";
-						std::this_thread::sleep_for(1500ms);
+						std::this_thread::sleep_for(2000ms);
                         //Sleep(2000);
                         goto CasinoMenu;
                     }
@@ -123,9 +118,8 @@ void Casino::setup()
                         b.MakeOrder(tempid, g);
                         goto CasinoMenu;
                     }
-                case 4: //Leave casino case
-					system("clear");
-                    /* system("cls"); */
+				case 4: //leave casino case
+					CLEAR_SCREEN;
                     cout << "Leaving..." << endl;
 					std::this_thread::sleep_for(1000ms);
 					//Sleep(1000);
