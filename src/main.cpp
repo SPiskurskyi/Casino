@@ -1,7 +1,10 @@
-#include "../headers/Casino.hpp"
+#include "Casino.h"
 
 int main()
 {
-	Casino Emerald("Emerald");
+	app::Casino Emerald("Emerald");
 	Emerald.setup();	
 }
+
+
+        
