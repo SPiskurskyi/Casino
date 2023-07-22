@@ -1,8 +1,5 @@
 #include "Casino.h"
 
-using std::cout;
-using std::endl;
-using namespace std::chrono_literals;
 
 namespace app {
 
@@ -14,9 +11,9 @@ namespace app {
         while (!shouldExit)
         {
             print_mainmenu();
-            int mainChoice = get_choice(1, 2);
-
-            if (mainChoice == 1)
+            int mainChoice = get_choice(1, MAIN_CHOICE);
+            switch (mainChoice) {
+            case 1:
             {
                 Guest guest;
                 create_guest_menu(guest);
@@ -24,85 +21,80 @@ namespace app {
                 while (!shouldExit)
                 {
                     print_guestmenu(guest.GetGuestName());
-                    int guestChoice = get_choice(1, 3);
-
-                    if (guestChoice == 1)
-                    {
+                    int guestChoice = get_choice(1, GUEST_CHOICE);
+                    switch (guestChoice) {
+                    case 1:
                         CLEAR_SCREEN;
                         guest.CheckStatus();
                         system("pause");
-                    }
-                    else if (guestChoice == 2)
+                        continue;
+                    case 2:
                     {
-                        if (guest.GetGuestAge() < 18)
+                        if (guest.GetGuestAge() < MIN_AGE)
                         {
                             CLEAR_SCREEN;
-                            cout << "You are still too young to gamble. Are you sure you want to continue?\n1-> Yes\n2-> No\n>";
-                            int ageChoice = get_choice(1, 2);
-
+                            std::cout << "You are still too young to gamble. Are you sure you want to continue?\n1-> Yes\n2-> No\n>";
+                            int ageChoice = get_choice(1, AGE_CHOICE);
                             if (ageChoice == 2)
                             {
-                                cout << "Bye, Bye\n";
-                                std::this_thread::sleep_for(500ms);
+                                std::cout << "Bye, Bye\n";
+                                std::this_thread::sleep_for(std::chrono::milliseconds(500));
                                 break;
                             }
-                            std::this_thread::sleep_for(500ms);
+                            std::this_thread::sleep_for(std::chrono::milliseconds(500));
                         }
-
                         print_welcome();
-                        std::this_thread::sleep_for(1500ms);
-
+                        std::this_thread::sleep_for(std::chrono::milliseconds(1500));
                         Bar bar;
                         while (!shouldExit)
                         {
                             check_drunkenness(bar, shouldExit);
-                            if (shouldExit) break;
+                            if (shouldExit) {
+                                break;
+                            }
                             print_casinomenu();
-                            int casinoChoice = get_choice(1, 4);
-
-                            if (casinoChoice == 1)
-                            {
+                            int casinoChoice = get_choice(1, CASINO_CHOICE);
+                            switch (casinoChoice) {
+                            case 1:
                                 guest.Exchanger();
-                            }
-                            else if (casinoChoice == 2)
-                            {
+                                continue;
+                            case 2:
                                 guest.Placebet();
-                            }
-                            else if (casinoChoice == 3)
-                            {
-                                if (guest.GetGuestAge() < 18)
+                                continue;
+                            case 3:
+                                if (guest.GetGuestAge() < MIN_AGE)
                                 {
                                     CLEAR_SCREEN;
-                                    cout << "Unfortunately, the bar is only available for adults\n";
-                                    std::this_thread::sleep_for(2000ms);
+                                    std::cout << "Unfortunately, the bar is only available for adults\n";
+                                    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                                 }
                                 else
                                 {
                                     bar.ShowAsortement();
-                                    cout << "\t\t\tBalance - " << guest.GetGuestCash() << endl;
-                                    cout << "Choose any id of the drink that interests you\n>";
-                                    int drinkId = get_choice(1, 8);
+                                    std::cout << "\t\t\tBalance - " << guest.GetGuestCash() << std::endl;
+                                    std::cout << "Choose any id of the drink that interests you\n>";
+                                    int drinkId = get_choice(1, DRINK_CHOICE);
                                     bar.MakeOrder(drinkId, guest);
                                 }
-                            }
-                            else if (casinoChoice == 4)
-                            {
+                                continue;
+                            case 4:
                                 CLEAR_SCREEN;
-                                break;
                             }
+                            break;
                         }
+                        continue;
                     }
-                    else if (guestChoice == 3)
-                    {
-                        break;
+                    case 3:
+                        CLEAR_SCREEN;
                     }
+                    break;
                 }
             }
-            else if (mainChoice == 2)
-            {
-                cout << "Ending..." << endl;
-                break;
+            continue;
+            case 2:
+                std::cout << "Ending..." << std::endl;
             }
+            break;
         }
     }
 }

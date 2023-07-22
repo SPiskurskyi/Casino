@@ -1,16 +1,10 @@
 #include "Guest.h"
 
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
-using namespace std::chrono_literals;
-
 namespace app {
 
-    void Guest::SetGuestName(string name)
+    void Guest::SetGuestName(std::string name)
     {
-        name_ = name;
+        name_ = std::move(name);
     }
     void Guest::SetGuestAge(int age)
     {
@@ -20,7 +14,7 @@ namespace app {
     {
         cash_ = cash;
     }
-    string Guest::GetGuestName() const
+    std::string Guest::GetGuestName() const
     {
         return name_;
     }
@@ -38,62 +32,62 @@ namespace app {
     }
     void Guest::CheckStatus() const
     {
-        cout << "Guest name - \"" << name_ << "\"" << endl;
-        cout << "Guest age - " << age_ << " y.o." << endl;
-        cout << "Guest cash - " << cash_ << "$" << endl;
-        cout << "Guest tokens - " << tokens_ << endl;
+        std::cout << "Guest name - \"" << name_ << "\"" << std::endl;
+        std::cout << "Guest age - " << age_ << " y.o." << std::endl;
+        std::cout << "Guest cash - " << cash_ << "$" << std::endl;
+        std::cout << "Guest tokens - " << tokens_ << std::endl;
     }
     void Guest::Exchanger()
     {
         int choice;
         CLEAR_SCREEN;
-        cout << "What kind of exchange are you interested in?\n";
-        cout << "1->Cash->tokens\n";
-        cout << "2->Tokens->cash\n";
-        choice = get_choice(1, 2);
+        std::cout << "What kind of exchange are you interested in?\n";
+        std::cout << "1->Cash->tokens\n";
+        std::cout << "2->Tokens->cash\n";
+        choice = get_choice(1, EXCHANGER_CHOICE);
         switch (choice)
         {
         case 1:
             CLEAR_SCREEN;
             if (!(cash_ == 0))
             {
-                cout << "\tAvailable cash - " << cash_ << "$" << endl;
-                cout << "How many tokens do you want to buy?" << "\n>";
+                std::cout << "\tAvailable cash - " << cash_ << "$" << std::endl;
+                std::cout << "How many tokens do you want to buy?" << "\n>";
                 choice = get_choice(1, cash_);
                 tokens_ += choice;
                 cash_ -= choice;
-                cout << "Success\n";
-                std::this_thread::sleep_for(1000ms);
+                std::cout << "Success\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 break;
             }
             else
             {
-                cout << "You have no cash!" << endl;
-                std::this_thread::sleep_for(1000ms);
+                std::cout << "You have no cash!" << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 break;
             }
         case 2:
             CLEAR_SCREEN;
             if (!(tokens_ == 0))
             {
-                cout << "\tAvailable tokens - " << tokens_ << endl;
-                cout << "How many cash do you want to buy?" << "\n>";
-                cin >> choice;
+                std::cout << "\tAvailable tokens - " << tokens_ << std::endl;
+                std::cout << "How many cash do you want to buy?" << "\n>";
+                std::cin >> choice;
                 while (choice <= 0 || choice > tokens_)
                 {
-                    cout << "Ooops, something is wrong, try again!\n>";
-                    cin >> choice;
+                    std::cout << "Ooops, something is wrong, try again!\n>";
+                    std::cin >> choice;
                 }
                 cash_ += choice;
                 tokens_ -= choice;
-                cout << "Success\n";
-                std::this_thread::sleep_for(1000ms);
+                std::cout << "Success\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 break;
             }
             else
             {
-                cout << "You have no tokens!" << endl;
-                std::this_thread::sleep_for(1000ms);
+                std::cout << "You have no tokens!" << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 break;
             }
         }
@@ -103,95 +97,76 @@ namespace app {
         CLEAR_SCREEN;
         if (!(tokens_ == 0))
         {
-            cout << "-----------------------------------------------------------------------------------------------------" << endl;
-            for (int i = 0; i < 37; i++)
-            {
-                if (i == 0)
-                {
-                    cout << '-';
-                    cout << i;
-                }
-                else if (i == 1)
-                {
-                    cout << '-';
-                    cout << i;
-                }
-                else if (i % 2 == 0)
-                {
-                    cout << '-';
-                    cout << i;
-                }
-                else if (i % 2 == 1)
-                {
-                    cout << '-';
-                    cout << i;
-                }
+            std::cout << "-----------------------------------------------------------------------------------------------------" << std::endl;
+            for (int i = 0; i < ROULETTE_COUNT; i++){
+                std::cout << '-';
+                std::cout << i;
             }
-            cout << "\n-----------------------------------------------------------------------------------------------------" << endl;
-            cout << "\t\t\t\t\tGreen is zero\n";
-            cout << "\t\t\t\t\tRed are odd numbers\n";
-            cout << "\t\t\t\t\tBlack are even numbers\n";
-            cout << "\n\t\t\t\t\tYour tokens - " << tokens_;
-            cout << "\nHow many tokens do you want to bet?\n>";
+            std::cout << "\n-----------------------------------------------------------------------------------------------------" << std::endl;
+            std::cout << "\t\t\t\t\tGreen is zero\n";
+            std::cout << "\t\t\t\t\tRed are odd numbers\n";
+            std::cout << "\t\t\t\t\tBlack are even numbers\n";
+            std::cout << "\n\t\t\t\t\tYour tokens - " << tokens_;
+            std::cout << "\nHow many tokens do you want to bet?\n>";
             int bet = get_choice(1, tokens_);
             tokens_ -= bet;
-            cout << "Okay. Now choose the winning color\n";
-            cout << "1->Black (2x)\n";
-            cout << "2->Red (2x)\n";
-            cout << "3->Green (16x)\n>";
-            int choice = get_choice(1, 3);
-            int winlot = rand() % 37;
+            std::cout << "Okay. Now choose the winning color\n";
+            std::cout << "1->Black (2x)\n";
+            std::cout << "2->Red (2x)\n";
+            std::cout << "3->Green (16x)\n>";
+            int choice = get_choice(1, BET_CHOICE);
+            int winlot = rand() % ROULETTE_COUNT;
             if (winlot == 0)
             {
-                cout << "\n\t\t\t\tWinning lot - ";
-                cout << winlot << " GREEN " << endl;
+                std::cout << "\n\t\t\t\tWinning lot - ";
+                std::cout << winlot << " GREEN " << std::endl;
             }
             else if (winlot % 2 == 1)
             {
-                cout << "\n\t\t\t\tWinning lot - ";
-                cout << winlot << " RED " << endl;
+                std::cout << "\n\t\t\t\tWinning lot - ";
+                std::cout << winlot << " RED " << std::endl;
             }
             else if (winlot % 2 == 0)
             {
-                cout << "\n\t\t\t\tWinning lot - ";
-                cout << winlot << " BLACK " << endl;
+                std::cout << "\n\t\t\t\tWinning lot - ";
+                std::cout << winlot << " BLACK " << std::endl;
             }
             switch (choice)
             {
             case 1:
                 if (winlot % 2 == 0)
                 {
-                    cout << "YOU WON - " << bet * 2 << " TOKENS!\n\n";
-                    tokens_ = tokens_ + bet * 2;
+                    std::cout << "YOU WON - " << bet * RED_AND_BLACK_MULTIPLIER << " TOKENS!\n\n";
+                    tokens_ = tokens_ + bet * RED_AND_BLACK_MULTIPLIER;
                 }
-                else cout << "You lost " << bet << " tokens :(\n\n";
-                std::this_thread::sleep_for(3500ms);
+                else std::cout << "You lost " << bet << " tokens :(\n\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(3500));
                 break;
             case 2:
                 if (winlot % 2 == 1)
                 {
-                    cout << "YOU WON - " << bet * 2 << " TOKENS!\n\n";
-                    tokens_ = tokens_ + bet * 2;
+                    std::cout << "YOU WON - " << bet * RED_AND_BLACK_MULTIPLIER << " TOKENS!\n\n";
+                    tokens_ = tokens_ + bet * RED_AND_BLACK_MULTIPLIER;
                 }
-                else cout << "You lost " << bet << " tokens :(\n\n";
-                std::this_thread::sleep_for(3500ms);
+                else std::cout << "You lost " << bet << " tokens :(\n\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(3500));
                 break;
             case 3:
                 if (winlot == 0)
                 {
-                    cout << "JACKPOTT!! YOU WON - " << bet * 16 << " TOKENS!!!\n\n";
-                    tokens_ = tokens_ + bet * 16;
+                    std::cout << "JACKPOTT!! YOU WON - " << bet * GREEN_MULTIPLIER << " TOKENS!!!\n\n";
+                    tokens_ = tokens_ + bet * GREEN_MULTIPLIER;
                 }
-                else cout << "You lost " << bet << " tokens :(\n\n";
-                std::this_thread::sleep_for(3500ms);
+                else std::cout << "You lost " << bet << " tokens :(\n\n";
+                std::this_thread::sleep_for(std::chrono::milliseconds(3500));
                 break;
             }
             return *this;
         }
         else
         {
-            cout << "Please exchange your cash for tokens to start playing!\n" << endl;
-            std::this_thread::sleep_for(1500ms);
+            std::cout << "Please exchange your cash for tokens to start playing!\n" << std::endl;
+            std::this_thread::sleep_for(std::chrono::milliseconds(1500));
             return *this;
         }
     }

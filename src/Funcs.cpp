@@ -1,39 +1,33 @@
 #include "Funcs.h"
 
-using std::cout;
-using std::cin;
-using std::endl;
-using std::string;
-
-
 namespace app {
 
     void print_mainmenu()
     {
         CLEAR_SCREEN;
-        cout << "--MAIN MENU--" << endl;
-        cout << "1-> Guest menu" << endl;
-        cout << "2-> Exit program" << endl;
-        cout << '>';
+        std::cout << "--MAIN MENU--" << std::endl;
+        std::cout << "1-> Guest menu" << std::endl;
+        std::cout << "2-> Exit program" << std::endl;
+        std::cout << '>';
     }
-    void print_guestmenu(const string& GuestName)
+    void print_guestmenu(const std::string& GuestName)
     {
         CLEAR_SCREEN;
-        cout << "--GUEST MENU--" << endl;
-        cout << "1-> Check \"" << GuestName << "\" status" << endl;
-        cout << "2-> Go to the casino" << endl;
-        cout << "3-> Go back to main menu" << endl;
-        cout << '>';
+        std::cout << "--GUEST MENU--" << std::endl;
+        std::cout << "1-> Check \"" << GuestName << "\" status" << std::endl;
+        std::cout << "2-> Go to the casino" << std::endl;
+        std::cout << "3-> Go back to main menu" << std::endl;
+        std::cout << '>';
     }
     void print_casinomenu()
     {
         CLEAR_SCREEN;
-        cout << "--CASINO MENU--" << endl;
-        cout << "1-> Exchanger" << endl;
-        cout << "2-> Place a bet" << endl;
-        cout << "3-> Go to the bar" << endl;
-        cout << "4-> Leave the casino" << endl;
-        cout << '>';
+        std::cout << "--CASINO MENU--" << std::endl;
+        std::cout << "1-> Exchanger" << std::endl;
+        std::cout << "2-> Place a bet" << std::endl;
+        std::cout << "3-> Go to the bar" << std::endl;
+        std::cout << "4-> Leave the casino" << std::endl;
+        std::cout << '>';
     }
     int get_choice(const int a1, const int a2)
     {
@@ -60,8 +54,8 @@ namespace app {
    
     void create_guest(Guest& other)
     {
-        other.SetGuestAge((rand() % 72) + 8);
-        other.SetGuestCash(rand() % 1000);
+        other.SetGuestAge((rand() % AGE_GENERATOR) + MIN_AGE_REQUIRED);
+        other.SetGuestCash(rand() % CASH_GENERATOR);
         int a = rand() % 5;
         switch (a)
         {
@@ -88,19 +82,19 @@ namespace app {
         switch (a)
         {
         case 0:
-            cout << "What a good drink!\n";
+            std::cout << "What a good drink!\n";
             break;
         case 1:
-            cout << "Nice one!\n";
+            std::cout << "Nice one!\n";
             break;
         case 2:
-            cout << "Cheers!\n";
+            std::cout << "Cheers!\n";
             break;
         case 3:
-            cout << "Bartender i love you\n";
+            std::cout << "Bartender i love you\n";
             break;
         case 4:
-            cout << "One more!\n";
+            std::cout << "One more!\n";
             break;
         }
     }
@@ -115,7 +109,7 @@ namespace app {
     void create_guest_menu(Guest& guest)
     {
         CLEAR_SCREEN;
-        cout << "Create guest:\n1->Manually\n2->Randomize\n>";
+        std::cout << "Create guest:\n1->Manually\n2->Randomize\n>";
         int choice = get_choice(1, 2);
 
         switch (choice)
@@ -123,12 +117,12 @@ namespace app {
         case 1: 
         {
             CLEAR_SCREEN;
-            cout << "Enter Guest's name -> ";
+            std::cout << "Enter Guest's name -> ";
             std::string tempname;
-            getline(cin, tempname);
-            cout << "\nEnter Guest's age(8-80 REQUIRED) -> ";
-            int tempage = get_choice(8,80);
-            cout << "\nEnter Guest's cash -> ";
+            getline(std::cin, tempname);
+            std::cout << "\nEnter Guest's age(" << MIN_AGE_REQUIRED  << "-" << AGE_GENERATOR + MIN_AGE_REQUIRED << " REQUIRED) -> ";
+            int tempage = get_choice(MIN_AGE_REQUIRED,AGE_GENERATOR + MIN_AGE_REQUIRED);
+            std::cout << "\nEnter Guest's cash -> ";
             int tempcash = get_choice(1,999999999);
             guest.SetGuestName(tempname);
             guest.SetGuestAge(tempage);

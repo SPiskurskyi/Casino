@@ -10,15 +10,16 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 file(COPY ${CMAKE_SOURCE_DIR}/assortment.txt DESTINATION ${CMAKE_BINARY_DIR}/)
 
 add_executable(${PROJECT_NAME}
-${CMAKE_SOURCE_DIR}/src/Bar.cpp
-${CMAKE_SOURCE_DIR}/src/Bar.h
-${CMAKE_SOURCE_DIR}/src/Casino.cpp
-${CMAKE_SOURCE_DIR}/src/Casino.h
-${CMAKE_SOURCE_DIR}/src/Funcs.cpp
-${CMAKE_SOURCE_DIR}/src/Funcs.h
-${CMAKE_SOURCE_DIR}/src/Guest.cpp
-${CMAKE_SOURCE_DIR}/src/Guest.h
-${CMAKE_SOURCE_DIR}/src/main.cpp
+src/Bar.cpp
+src/Bar.h
+src/Casino.cpp
+src/Casino.h
+src/Constants.h
+src/Funcs.cpp
+src/Funcs.h
+src/Guest.cpp
+src/Guest.h
+src/main.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE

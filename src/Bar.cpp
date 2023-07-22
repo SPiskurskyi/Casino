@@ -1,11 +1,5 @@
 #include "Bar.h"
 
-using std::cout;
-using std::endl;
-using std::setw;
-using std::fstream;
-using namespace std::chrono_literals;
-
 namespace app {
     
     int Bar::drunkenness_ = 0;
@@ -18,23 +12,23 @@ namespace app {
     void Bar::ShowAsortement()
     {
         CLEAR_SCREEN;
-        barFile_.open(path_ + ".txt", fstream::out | fstream::in | fstream::app);
+        barFile_.open(path_ + ".txt", std::fstream::out | std::fstream::in | std::fstream::app);
         if (!barFile_.is_open()) {
-            cout << "File don't find";
+            std::cout << "File don't find";
         }
         else {
-            cout << setw(8) << "Name\t";
-            cout << setw(8) << "\t     Price\t";
-            cout << setw(8) << "   Avalible";
-            cout << setw(8) << "           Id\t" << endl;
+            std::cout << std::setw(TAB_WIDTH) << "Name\t";
+            std::cout << std::setw(TAB_WIDTH) << "\t     Price\t";
+            std::cout << std::setw(TAB_WIDTH) << "   Avalible";
+            std::cout << std::setw(TAB_WIDTH) << "           Id\t" << std::endl;
             while (!barFile_.eof())
             {
                 barFile_ >> name_ >> price_ >> quantity_ >> id_;
-                cout << setw(8) << name_ << '\t';
-                cout << setw(8) << price_ << "$\t";
-                cout << setw(8) << quantity_ << '\t';
-                cout << setw(8) << id_ << '\t';
-                cout << endl;
+                std::cout << std::setw(TAB_WIDTH) << name_ << '\t';
+                std::cout << std::setw(TAB_WIDTH) << price_ << "$\t";
+                std::cout << std::setw(TAB_WIDTH) << quantity_ << '\t';
+                std::cout << std::setw(TAB_WIDTH) << id_ << '\t';
+                std::cout << std::endl;
             }
             barFile_.close();
         }
@@ -42,9 +36,9 @@ namespace app {
   
     bool Bar::MakeOrder(int id, Guest& obj)
     {
-        barFile_.open(path_ + ".txt", fstream::out | fstream::in | fstream::app);
+        barFile_.open(path_ + ".txt", std::fstream::out | std::fstream::in | std::fstream::app);
         if (!barFile_.is_open()) {
-            cout << "File don't find";
+            std::cout << "File don't find";
             return false;
         }
         else {
@@ -56,16 +50,16 @@ namespace app {
                     if (price_ > obj.GetGuestCash())
                     {
                         barFile_.close();
-                        cout << "Not enough money on the balance\n";
-                        std::this_thread::sleep_for(2000ms);
+                        std::cout << "Not enough money on the balance\n";
+                        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                         return false;
                     }
                     else
                     {
                         obj.SetGuestCash(obj.GetGuestCash() - price_);
-                        cout << "\"You drank a " << name_ << '\"' << endl;
+                        std::cout << "\"You drank a " << name_ << '\"' << std::endl;
                         create_phrase();
-                        std::this_thread::sleep_for(2500ms);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(2500));
                         barFile_.close();
                         drunkenness_++;
                         return true;
@@ -73,8 +67,8 @@ namespace app {
                 }
             }
             barFile_.close();
-            cout << "Item is not available\n";
-            std::this_thread::sleep_for(2000ms);
+            std::cout << "Item is not available\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
             return false;
         }
     }
@@ -85,24 +79,24 @@ namespace app {
         CLEAR_SCREEN;
         if (obj.GetDrunkenness() == 2)
         {
-            cout << "Bartender: - Are you okay, maybe you better go home?\n";
-            cout << "1->Sure\n2->Nope\n>";
+            std::cout << "Bartender: - Are you okay, maybe you better go home?\n";
+            std::cout << "1->Sure\n2->Nope\n>";
             choice = get_choice(1, 2);
             if (choice == 1)
             {
-                cout << "Ending..." << endl;
-                std::this_thread::sleep_for(2000ms);
+                std::cout << "Ending..." << std::endl;
+                std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                 shouldExit = true;
             }
             else if (choice == 2)
             {
-                cout << "\nOkay....\n";
+                std::cout << "\nOkay....\n";
             }
         }
         if (obj.GetDrunkenness() == 3)
         {
-            cout << "AGHHHHHHH\n";
-            std::this_thread::sleep_for(2000ms);
+            std::cout << "AGHHHHHHH\n";
+            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
             shouldExit = true;
         }
     }

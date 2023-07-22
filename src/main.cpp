@@ -5,6 +5,3 @@ int main()
 	app::Casino Emerald("Emerald");
 	Emerald.setup();	
 }
-
-
-        
